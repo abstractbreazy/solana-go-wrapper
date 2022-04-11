@@ -30,7 +30,7 @@ func TestSendTransaction(t *testing.T) {
 	require.NoError(t, err)
 	client.Accounts = Accounts
 
-	sig, err := client.sendTransaction(
+	sig, err := client.SendTransaction(
 		ctx,
 		lamports,
 		fundingAccount,

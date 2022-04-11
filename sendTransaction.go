@@ -9,7 +9,8 @@ import (
 	confirm "github.com/gagliardetto/solana-go/rpc/sendAndConfirmTransaction"
 )
 
-func (c *Client) sendTransaction(
+// SendTransaction transfer tokens from one account to another, and returns transaction signature.
+func (c *Client) SendTransaction(
 	ctx context.Context, 
 	lamports uint64,
 	fundingAccount string,
