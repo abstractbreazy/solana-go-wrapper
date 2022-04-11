@@ -10,7 +10,6 @@ import (
 )
 
 func TestSendTransaction(t *testing.T) {
-
 	var (
 		ctx = context.Background()
 		rpcEndpoint 	 = rpc.DevNet_RPC
@@ -37,7 +36,6 @@ func TestSendTransaction(t *testing.T) {
 		recipientAccount,
 	)
 	require.NoError(t, err)
-
 
 	t.Logf("tx hash: %v", sig.String())
 }

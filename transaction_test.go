@@ -10,6 +10,7 @@ import (
 )
 
 func TestNewTransaction(t *testing.T) {
+
 	var (
 		ctx 			 = context.Background()
 		rpcEndpoint 	 = rpc.TestNet_RPC
@@ -29,7 +30,10 @@ func TestNewTransaction(t *testing.T) {
 	)
 	require.NoError(t, err)
 
-	recent, err := client.rpc.GetRecentBlockhash(ctx, rpc.CommitmentFinalized)
+	recent, err := client.rpc.GetRecentBlockhash(
+		ctx, 
+		rpc.CommitmentFinalized,
+	)
 	require.NoError(t, err)
 
 	tx, err = client.newTransaction(

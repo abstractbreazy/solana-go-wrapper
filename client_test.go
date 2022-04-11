@@ -34,7 +34,11 @@ func TestClient_New(t *testing.T) {
 		err 		error
 	)
 	
-	client, err := New(ctx, rpcEndpoint, wsEndpoint)
+	client, err := New(
+		ctx, 
+		rpcEndpoint, 
+		wsEndpoint,
+	)
 	require.NoError(t, err)
 	
 	_, err = client.rpc.GetVersion(ctx)
