@@ -17,7 +17,7 @@ func TestNewAccount(t *testing.T) {
 		wsEndpoint  = rpc.DevNet_WS
 		err         error
 		client      *Client
-		lamports    = solana.LAMPORTS_PER_SOL*1
+		lamports    = solana.LAMPORTS_PER_SOL * 1
 	)
 
 	client, err = New(
@@ -28,7 +28,7 @@ func TestNewAccount(t *testing.T) {
 	require.NoError(t, err)
 
 	privateKey, _, err := client.NewWallet(
-		ctx, 
+		ctx,
 		lamports,
 	)
 	require.NoError(t, err)

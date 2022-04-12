@@ -11,12 +11,12 @@ import (
 func (c *Client) NewWallet(
 	ctx context.Context,
 	lamports uint64,
-	) (*solana.PrivateKey, *solana.Signature, error) {
+) (*solana.PrivateKey, *solana.Signature, error) {
 
 	pk := solana.NewWallet()
 
 	out, err := c.rpc.RequestAirdrop(
-		ctx, 
+		ctx,
 		pk.PublicKey(),
 		lamports,
 		rpc.CommitmentFinalized,
