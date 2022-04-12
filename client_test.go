@@ -23,24 +23,23 @@ var (
 		"5iZtTQjqKpNTBZCtSpKd9h6cNpdxbahHnH9PBssUrbZr": "5qyfAwaTeC7V4U9cvfZfjV1zVbmhQUf3VTuNanMPW6qtpARCnR6VQSng4nZFMw2pibRNdQYZR2r5u2zn5gAkuhVi",
 		"HSEFoD3n3DYYhHkvSPcDvk2vwPrJkULu32Vms2M7o9wP": "KAPh7idad5RQAxgYSQ2nTNsTjM4esNjiozbrh7cbpSpMxwFDhuUahKyGjU7eVZ7hZfA9AG2EtWgt2iZCNDFEQiM",
 	}
-
 )
 
 func TestClient_New(t *testing.T) {
 	var (
-		ctx 		= context.Background()
-		rpcEndpoint = rpc.TestNet_RPC
-		wsEndpoint 	= rpc.TestNet_WS
-		err 		error
+		ctx         = context.Background()
+		rpcEndpoint = rpc.DevNet_RPC
+		wsEndpoint  = rpc.DevNet_WS
+		err         error
 	)
-	
+
 	client, err := New(
-		ctx, 
-		rpcEndpoint, 
+		ctx,
+		rpcEndpoint,
 		wsEndpoint,
 	)
 	require.NoError(t, err)
-	
+
 	_, err = client.rpc.GetVersion(ctx)
 	require.NoError(t, err)
 }

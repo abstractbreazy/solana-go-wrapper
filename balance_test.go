@@ -15,18 +15,18 @@ func TestClient_Balance(t *testing.T) {
 		rpcEndpoint = rpc.DevNet_RPC
 		wsEndpoint  = rpc.DevNet_WS
 		err         error
-		account = "8PxBC1rmGYPNGQr23fF8xZbpUrieqGMMfpitJTiFyi8j"
+		account     = "8PxBC1rmGYPNGQr23fF8xZbpUrieqGMMfpitJTiFyi8j"
 	)
 
 	client, err := New(
-		ctx, 
-		rpcEndpoint, 
+		ctx,
+		rpcEndpoint,
 		wsEndpoint,
 	)
 	require.NoError(t, err)
 
 	out, err := client.GetBalance(
-		ctx, 
+		ctx,
 		solana.MustPublicKeyFromBase58(account),
 	)
 	require.NoError(t, err)

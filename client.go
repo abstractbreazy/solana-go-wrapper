@@ -9,9 +9,9 @@ import (
 
 // Client wraps Solana-sdk clients.
 type Client struct {
-	rpc 	 *rpc.Client
-	wss 	 *ws.Client
-	Accounts  map[string]string
+	rpc      *rpc.Client
+	wss      *ws.Client
+	Accounts map[string]string
 }
 
 // New creates a new Solana-wrapper client.
@@ -38,22 +38,22 @@ func New(
 
 // NewRPCClient creates a new Solana RPC client.
 func NewRPCClient(
-	ctx context.Context, 
+	ctx context.Context,
 	rpcEndpont string,
 ) (*rpc.Client, error) {
-		
+
 	rpcClient := rpc.New(rpcEndpont)
 	_, err := rpcClient.GetVersion(ctx)
 	if err != nil {
 		return nil, err
-	}	
+	}
 
 	return rpcClient, nil
 }
 
 // NewWSClient creates a new Solana WS client.
 func NewWSClient(
-	ctx context.Context, 
+	ctx context.Context,
 	wsEndpoint string,
 ) (*ws.Client, error) {
 

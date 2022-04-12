@@ -2,6 +2,8 @@ package solego
 
 import (
 	"context"
+	"fmt"
+	"math/big"
 
 	"github.com/gagliardetto/solana-go"
 	"github.com/gagliardetto/solana-go/rpc"
@@ -11,7 +13,7 @@ import (
 func (cl *Client) GetBalance(
 	ctx context.Context,
 	account solana.PublicKey,
-) (uint64, error) {
+) (string, error) {
 
 	out, err := cl.rpc.GetBalance(
 		ctx,
@@ -19,8 +21,21 @@ func (cl *Client) GetBalance(
 		rpc.CommitmentFinalized,
 	)
 	if err != nil {
-		return 0, err
+		return "", err
 	}
 
-	return out.Value, nil
+	return cl.LamportsToSOL(out.Value), nil
+}
+
+// LamportsToSOL converts lamports to sol.
+func (cl *Client) LamportsToSOL(
+	lamports uint64,
+) string {
+
+	var (
+		ls   = new(big.Float).SetUint64(lamports)
+		sols = new(big.Float).Quo(ls, new(big.Float).SetUint64(solana.LAMPORTS_PER_SOL))
+	)
+
+	return fmt.Sprintf("%s %s", sols.String(), "SOL")
 }
