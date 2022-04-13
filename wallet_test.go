@@ -10,7 +10,6 @@ import (
 )
 
 func TestNewAccount(t *testing.T) {
-
 	var (
 		ctx         = context.Background()
 		rpcEndpoint = rpc.DevNet_RPC

@@ -2,8 +2,10 @@ package solego
 
 import (
 	"context"
+	"encoding/base64"
 	"os"
 
+	bin "github.com/gagliardetto/binary"
 	"github.com/gagliardetto/solana-go"
 	"github.com/gagliardetto/solana-go/programs/system"
 	"github.com/gagliardetto/solana-go/rpc"
@@ -109,4 +111,24 @@ func (c *Client) requestAirdrop(
 		return nil, err
 	}
 	return &out, nil
+}
+
+// VerifySignatures wraps solana.VerifySignatures and verifies all the signatures in the transaction.
+func (c *Client) VerifySignatures(sig string) (*solana.Transaction, error) {
+
+	txBin, err := base64.StdEncoding.DecodeString(sig)
+	if err != nil {
+		return nil, err
+	}
+
+	tx, err := solana.TransactionFromDecoder(bin.NewBinDecoder(txBin))
+	if err != nil{
+		return nil, err
+	}
+	err = tx.VerifySignatures()
+	if err != nil {
+		return nil, err
+	}
+
+	return tx, nil
 }
